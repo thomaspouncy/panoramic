@@ -7,7 +7,7 @@ An [ActionView::Resolver] implementation to store rails views (layouts, template
 Add the following line to Gemfile:
 
 ```
-gem "panoramic", "~> 0.0.2"
+gem "panoramic", :git => "git://github.com/brjennin/panoramic.git"
 ```
 
 ## Usage
