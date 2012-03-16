@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "panoramic"
-  s.version     ='0.0.3'
+  s.version     ='0.0.2'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Andrea Pavoni"]
   s.email       = ["andrea.pavoni@gmail.com"]
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{Stores rails views on database}
   s.description = %q{Stores rails views on database}
 
-  s.add_dependency 'rails', "~> 3.2.0"
+  s.add_dependency 'rails', ">= 3.1.0"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
