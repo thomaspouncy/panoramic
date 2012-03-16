@@ -44,11 +44,11 @@ module Panoramic
     # Build path with eventual prefix
     def build_path(name, prefix)
       #if path name has file format in it, take it out
-      mime_types = Mime::SET.symbols.map{|mime| mime.to_s}
-      split_name = name.split(".")
-      if mime_types.include?(split_name.last)
-        name = split_name[0..split_name.size-2].join(".")
-      end
+      # mime_types = Mime::SET.symbols.map{|mime| mime.to_s}
+      # split_name = name.split(".")
+      # if mime_types.include?(split_name.last)
+        # name = split_name[0..split_name.size-2].join(".")
+      # end
       prefix.present? ? "#{prefix}/#{name}" : name
     end
 
