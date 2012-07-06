@@ -10,7 +10,7 @@ module Panoramic
           validates :handler, :inclusion => ActionView::Template::Handlers.extensions.map(&:to_s)
 
           after_save do
-            Rails.cache.fetch("panoramic_stored_template_last_updated") { Time.now }
+            Rails.cache.write("panoramic_stored_template_last_updated", Time.now)
             Panoramic::Resolver.instance.clear_cache
           end
 
