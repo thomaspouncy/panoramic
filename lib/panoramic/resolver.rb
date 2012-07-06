@@ -3,6 +3,11 @@ module Panoramic
     require "singleton"
     include Singleton
 
+    def find_all(*args)
+      clear_cache_if_necessary
+      super
+    end
+
     # this method is mandatory to implement a Resolver
     def find_templates(name, prefix, partial, details)
       conditions = {
@@ -66,5 +71,15 @@ module Panoramic
         "_#{path}"
       end
     end
+
+    def clear_cache_if_necessary
+      last_updated = Rails.cache.fetch("panoramic_stored_template_last_updated") { Time.now }
+
+      if @cache_last_updated.nil? || @cache_last_updated < last_updated
+        clear_cache
+        @cache_last_updated = last_updated
+      end
+    end
+
   end
 end

@@ -9,7 +9,10 @@ module Panoramic
           validates :locale,  :inclusion => I18n.available_locales.map(&:to_s)
           validates :handler, :inclusion => ActionView::Template::Handlers.extensions.map(&:to_s)
 
-          after_save { Panoramic::Resolver.instance.clear_cache }
+          after_save do
+            Rails.cache.fetch("panoramic_stored_template_last_updated") { Time.now }
+            Panoramic::Resolver.instance.clear_cache
+          end
 
           extend ClassMethods
         end
