@@ -3,10 +3,10 @@ module Panoramic
     require "singleton"
     include Singleton
 
-    # def find_all(*args)
-    #   clear_cache_if_necessary
-    #   super
-    # end
+    def find_all(*args)
+      clear_cache_if_necessary
+      super
+    end
 
     # this method is mandatory to implement a Resolver
     def find_templates(name, prefix, partial, details)
