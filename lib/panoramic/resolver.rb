@@ -3,13 +3,14 @@ module Panoramic
     require "singleton"
     include Singleton
 
-    def find_all(*args)
-      clear_cache_if_necessary
-      super
-    end
+    # def find_all(*args)
+    #   clear_cache_if_necessary
+    #   super
+    # end
 
     # this method is mandatory to implement a Resolver
     def find_templates(name, prefix, partial, details)
+      clear_cache_if_necessary
       conditions = {
         :path    => build_path(name, prefix),
         :locale  => normalize_array(details[:locale]).first,
