@@ -4,12 +4,14 @@ module Panoramic
     include Singleton
 
     def find_all(*args)
+      logger.debug "Panoramic find_all"
       clear_cache_if_necessary
       super
     end
 
     # this method is mandatory to implement a Resolver
     def find_templates(name, prefix, partial, details)
+      logger.debug "Panoramic find_templates"
       clear_cache_if_necessary
       conditions = {
         :path    => build_path(name, prefix),
@@ -74,9 +76,11 @@ module Panoramic
     end
 
     def clear_cache_if_necessary
+      logger.debug "Panoramic clear_cache_if_necessary"
       last_updated = Rails.cache.fetch("panoramic_stored_template_last_updated") { Time.now }
-
+      logger.debug "Panoramic CACHE - Last Updated (from memcache): #{last_updated.inspect} - cache_last_updated value: #{@cache_last_updated.inspect}"
       if @cache_last_updated.nil? || @cache_last_updated < last_updated
+        logger.debug "View Cache needs to be wiped"
         clear_cache
         @cache_last_updated = last_updated
       end
