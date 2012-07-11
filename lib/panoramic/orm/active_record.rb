@@ -12,6 +12,7 @@ module Panoramic
           after_save :clear_view_cache
 
           def clear_view_cache
+            logger.debug "clear_view_cache"
             Rails.cache.write("panoramic_stored_template_last_updated", Time.now.utc)
             Panoramic::Resolver.instance.clear_cache
           end
