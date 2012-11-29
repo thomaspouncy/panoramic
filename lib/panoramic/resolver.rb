@@ -24,6 +24,9 @@ module Panoramic
       }
 
       @@model.find_model_templates(conditions).map do |record|
+        if record.respond_to?(:updated_at) && record.updated_at > 5.minutes.ago
+          clear_cache
+        end
         initialize_template(record)
       end
     end
